@@ -5,11 +5,17 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
 import data from "./components/contacts.json";
+import { nanoid } from "nanoid";
 
 function App() {
+  //Search Box
   const [inputValue, setInputValue] = useState("");
-  console.log(inputValue);
 
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  // Contact List
   const [users, setUsers] = useState(data);
 
   useEffect(() => {
@@ -20,16 +26,26 @@ function App() {
     setUsers(handleFilter);
   }, [inputValue]);
 
-  console.log(users);
+  //Contact Form
+
+  const initialValues = {
+    id: "",
+    number: "",
+    name: "",
+  };
+
+  const handleSubmit = (values, options) => {
+    values.id = nanoid();
+    setUsers((prev) => [...prev, values]);
+    options.resetForm();
+  };
 
   return (
     <>
       <div>
         <h1>Phonebook</h1>
-        {/* <ContactForm values={initialValues} /> */}
-        <SearchBox data={inputValue} setData={setInputValue} />
-
-        <p>{inputValue}</p>
+        <ContactForm value={initialValues} getValue={handleSubmit} />
+        <SearchBox data={inputValue} setData={handleChange} />
         <ContactList contacts={users} />
       </div>
     </>
