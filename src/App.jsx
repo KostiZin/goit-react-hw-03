@@ -8,6 +8,20 @@ import data from "./components/contacts.json";
 import { nanoid } from "nanoid";
 
 function App() {
+  // Contact List
+
+  const [contacts, setContacts] = useState(() => {
+    const savedContacts = window.localStorage.getItem("contacts");
+    if (savedContacts !== null) {
+      return JSON.parse(savedContacts);
+    }
+    return data;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
+
   //Search Box
   const [inputValue, setInputValue] = useState("");
 
@@ -15,16 +29,9 @@ function App() {
     setInputValue(e.target.value);
   };
 
-  // Contact List
-  const [users, setUsers] = useState(data);
-
-  useEffect(() => {
-    const handleFilter = data.filter((user) =>
-      user.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-
-    setUsers(handleFilter);
-  }, [inputValue]);
+  const handleFilter = contacts.filter((user) =>
+    user.name.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
   //Contact Form
 
@@ -34,19 +41,29 @@ function App() {
     name: "",
   };
 
-  const handleSubmit = (values, options) => {
+  //Adding new contact
+
+  const handleAddNewContacts = (values, options) => {
     values.id = nanoid();
-    setUsers((prev) => [...prev, values]);
+    setContacts((prev) => [...prev, values]);
     options.resetForm();
+  };
+
+  //Deleting a contact
+  const handleDeleteContacts = (id) => {
+    setContacts((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
     <>
       <div>
         <h1>Phonebook</h1>
-        <ContactForm value={initialValues} getValue={handleSubmit} />
+        <ContactForm value={initialValues} getValue={handleAddNewContacts} />
         <SearchBox data={inputValue} setData={handleChange} />
-        <ContactList contacts={users} />
+        <ContactList
+          contacts={handleFilter}
+          deleteContact={handleDeleteContacts}
+        />
       </div>
     </>
   );

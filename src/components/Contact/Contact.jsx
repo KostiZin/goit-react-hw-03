@@ -1,9 +1,9 @@
-import React from "react";
 import css from "./Contact.module.css";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 
-const Contact = ({ contacts }) => {
+// eslint-disable-next-line react/prop-types
+const Contact = ({ contacts, deleteContacts }) => {
   return (
     <ul className={css.ul}>
       {contacts.map(({ id, name, number }) => {
@@ -19,7 +19,9 @@ const Contact = ({ contacts }) => {
                 {number}
               </p>
             </div>
-            <button className={css.button}>Delete</button>
+            <button className={css.button} onClick={() => deleteContacts(id)}>
+              Delete
+            </button>
           </li>
         );
       })}
