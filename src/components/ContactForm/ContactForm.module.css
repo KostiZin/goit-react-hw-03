@@ -4,9 +4,6 @@
   border-radius: 4px;
   background-color: rgb(181, 173, 199);
   color: rgb(11, 11, 11);
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-start; */
   width: 250px;
 }
 
@@ -27,10 +24,17 @@
 
 .btn {
   margin: 6px;
-  height: 32px;
+  height: 36px;
+  padding: 4px 10px;
   border-radius: 4px;
-  background-color: rgb(222, 209, 194);
+  background-color: rgb(223, 214, 203);
   border: 1px solid rgb(107, 104, 104);
+  transition: 0.4s ease;
+
+  &:hover {
+    background-color: rgb(244, 223, 197);
+    font-weight: bold;
+  }
 }
 
 .error {
