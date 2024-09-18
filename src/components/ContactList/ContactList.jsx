@@ -1,11 +1,20 @@
 import Contact from "../Contact/Contact";
+import css from "./ContactList.module.css";
 
-// eslint-disable-next-line react/prop-types
 const ContactList = ({ contacts, deleteContact }) => {
   return (
-    <>
-      <Contact contacts={contacts} deleteContacts={deleteContact} />
-    </>
+    <ul className={css.ul}>
+      {contacts.map(({ id, name, number }) => (
+        <li key={id} className={css.li}>
+          <Contact
+            id={id}
+            name={name}
+            number={number}
+            deleteContacts={deleteContact}
+          />
+        </li>
+      ))}
+    </ul>
   );
 };
 
