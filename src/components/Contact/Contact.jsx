@@ -4,7 +4,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 
 const Contact = ({ id, name, number, deleteContacts }) => {
   return (
-    <>
+    <li className={css.li}>
       <div className={css.div}>
         <p className={css.element}>
           <BsFillPersonFill className={css.icon} />
@@ -18,7 +18,7 @@ const Contact = ({ id, name, number, deleteContacts }) => {
       <button className={css.button} onClick={() => deleteContacts(id)}>
         Delete
       </button>
-    </>
+    </li>
   );
 };
 

@@ -25,11 +25,11 @@ function App() {
   //Search Box
   const [inputValue, setInputValue] = useState("");
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleFilter = contacts.filter((user) =>
+  const filteredContacts = contacts.filter((user) =>
     user.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
@@ -59,9 +59,12 @@ function App() {
       <div>
         <h1>Phonebook</h1>
         <ContactForm value={initialValues} getValue={handleAddNewContacts} />
-        <SearchBox data={inputValue} setData={handleChange} />
+        <SearchBox
+          inputValue={inputValue}
+          changeInputValue={handleInputChange}
+        />
         <ContactList
-          contacts={handleFilter}
+          contacts={filteredContacts}
           deleteContact={handleDeleteContacts}
         />
       </div>

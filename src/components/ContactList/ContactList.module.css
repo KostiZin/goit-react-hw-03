@@ -6,13 +6,3 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
 }
-
-.li {
-  background-color: rgb(219, 229, 232);
-  padding: 14px;
-  text-align: center;
-  border: 1px solid #100e0e;
-  border-radius: 8px;
-  font-weight: bold;
-  display: flex;
-}

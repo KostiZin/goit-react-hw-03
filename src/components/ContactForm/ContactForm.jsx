@@ -3,7 +3,6 @@ import css from "./ContactForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
 
-// eslint-disable-next-line react/prop-types
 const ContactForm = ({ value, getValue }) => {
   const formSchema = Yup.object().shape({
     name: Yup.string()
