@@ -59,10 +59,7 @@ function App() {
       <div>
         <h1>Phonebook</h1>
         <ContactForm value={initialValues} getValue={handleAddNewContacts} />
-        <SearchBox
-          inputValue={inputValue}
-          changeInputValue={handleInputChange}
-        />
+        <SearchBox inputValue={inputValue} onInputChange={handleInputChange} />
         <ContactList
           contacts={filteredContacts}
           deleteContact={handleDeleteContacts}

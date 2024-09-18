@@ -1,6 +1,6 @@
 import css from "./SearchBox.module.css";
 
-const SearchBox = ({ inputValue, changeInputValue }) => {
+const SearchBox = ({ inputValue, onInputChange }) => {
   return (
     <div className={css.container}>
       <p>Find contacts by name</p>
@@ -8,7 +8,7 @@ const SearchBox = ({ inputValue, changeInputValue }) => {
         className={css.input}
         type="text"
         value={inputValue}
-        onChange={changeInputValue}
+        onChange={onInputChange}
       />
     </div>
   );
